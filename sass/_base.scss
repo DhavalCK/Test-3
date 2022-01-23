@@ -1,0 +1,108 @@
+// COLORS
+// Background Color
+$color-bodybackground: #dfe1ed;
+$color-background: #f3f6fd;
+$color-white: #ffffff;
+$color-black: #000000;
+// Font Color
+$color-font-dark: #1f1c2f;
+$color-font-light: #898989;
+
+//Card Color
+$color-sky: #2bc8ff;
+$color-sky-bg: #dbf6fd;
+$color-orange: #ff723a;
+$color-orange-bg: #fee4cb;
+$color-green: #02d052;
+$color-green-bg: #baf3d2;
+$color-pink: #ff72ac;
+$color-pink-bg: #ffd3e2;
+$color-violet: #6858ff;
+$color-violet-bg: #e9e7fd;
+$color-yellow: #ffc554;
+$color-yellow-bg: #fff0d3;
+
+$line: 2px solid #ccc;
+$line-light: 2px solid #fff;
+$line-light-2: 2px solid #eee;
+
+//Break Points
+$bp-huge: 112.5em; //1800px
+$bp-largest: 75em; //1200px
+$bp-large: 62.5em; //1000px
+$bp-medium: 56.25em; //900px
+$bp-small: 50em; //800px
+$bp-smaller: 43.25em; //700px
+$bp-smallest: 37.5em; //600px
+$bp-tiny: 28.125em; //450px
+
+// Global Setup
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  //1rem = 10px
+  font-size: 62.5%;
+  box-sizing: border-box;
+
+  @media only screen and (min-width: $bp-huge) {
+    font-size: 75%; //12px
+  }
+  @media only screen and (max-width: $bp-largest) {
+    font-size: 50%; //8px
+  }
+
+  @media only screen and (max-width: $bp-tiny) {
+    font-size: 43.75%; //7px
+  }
+}
+
+body {
+  font-family: Poppins, sans-serif;
+  font-size: 1.6rem;
+  line-height: 1.6;
+  color: $color-font-dark;
+  font-weight: 400;
+}
+
+.container {
+  height: 100vh;
+  background-color: $color-background;
+  display: grid;
+  position: relative;
+  grid-template-columns:
+    [nav-start] minmax(8rem, 10rem)
+    [nav-end main-start] max-content [main-mid] 1fr [main-end aside-start] minmax(
+      40rem,
+      50rem
+    )
+    [aside-end];
+  grid-row: repeat(4, 1fr);
+
+  @media only screen and (max-width: $bp-small) {
+    grid-template-columns:
+      [nav-start] 10rem
+      [nav-end main-start] 45rem [main-end aside-start] minmax(20rem, 50rem)
+      [aside-end];
+  }
+
+  @media only screen and (max-width: $bp-smaller) {
+    grid-template-columns:
+      [nav-start] 10rem
+      [nav-end main-start] 35rem [main-end aside-start] minmax(20rem, 50rem)
+      [aside-end];
+  }
+
+  @media only screen and (max-width: $bp-smallest) {
+    grid-template-columns:
+      [nav-start] 10rem
+      [nav-end main-start] min-content [main-end aside-start] 1fr
+      [aside-end];
+    height: auto;
+  }
+}

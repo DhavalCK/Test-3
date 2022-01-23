@@ -1,0 +1,325 @@
+%header-padding {
+  padding: 3rem 0;
+  @media screen and (max-width: $bp-small) {
+    padding: 2rem 0;
+  }
+}
+
+.header {
+  // Menu icon
+  &__menu {
+    grid-column: nav-start / nav-end;
+    @extend %header-padding;
+    align-self: center;
+    justify-self: center;
+    transition: all 0.3s;
+    cursor: pointer;
+
+    &--checkbox {
+      position: absolute;
+      opacity: 0;
+      visibility: hidden;
+    }
+    @media screen and (max-width: $bp-small) {
+      z-index: 999;
+      background-color: transparent;
+
+      &--checkbox:checked ~ & {
+        background-color: $color-bodybackground !important;
+      }
+      &--checkbox:checked ~ .navigation {
+        transform: translateX(0);
+
+        background-color: $color-bodybackground !important;
+      }
+      &--checkbox:checked ~ & > &--icon {
+        height: 0;
+        background-color: transparent !important;
+
+        &::before,
+        &::after {
+          top: 0;
+        }
+        &::before {
+          transform: rotate(225deg);
+        }
+
+        &::after {
+          transform: rotate(-225deg);
+        }
+      }
+    }
+
+    //Sticky Nav - nav menu icon
+    @media screen and (max-width: $bp-smallest) {
+      position: fixed;
+      top: 1rem;
+      left: 1.5rem;
+      width: 7rem;
+      height: 7rem;
+      background-color: $color-background;
+      border-radius: 50%;
+      @include flex-center;
+    }
+
+    &--icon {
+      height: 2px;
+      width: 3.5rem;
+      border-radius: 100rem;
+      background-color: $color-font-dark;
+      position: relative;
+      @include flex-center;
+      transition: height 0.2s;
+      &::before,
+      &::after {
+        content: "";
+        height: 2px;
+        width: 2rem;
+        border-radius: 100rem;
+        background-color: $color-font-dark;
+        position: absolute;
+        transition: all 0.3s 0.2s;
+      }
+      &::before {
+        top: -0.8rem;
+      }
+      &::after {
+        top: 0.8rem;
+      }
+    }
+  }
+
+  //   Middle Part
+  //heading
+  &__heading {
+    grid-column: main-start / main-mid;
+    @extend %header-padding;
+    display: flex;
+    align-items: center;
+    padding: 0 5rem;
+    @media screen and (max-width: $bp-large) {
+      padding: 0 3.5rem;
+    }
+
+    @media screen and (max-width: $bp-small) {
+      padding: 0 2rem;
+      grid-column: main-start / main-end;
+      display: none;
+    }
+    @media screen and (max-width: $bp-tiny) {
+      padding: 0 2rem;
+    }
+    margin-right: auto;
+  }
+
+  //search
+  &--middle {
+    grid-column: main-mid / main-end;
+    @extend %header-padding;
+    display: flex;
+    align-items: center;
+    margin-left: -2rem;
+
+    @media screen and (max-width: $bp-large) {
+      padding: 0;
+    }
+
+    @media screen and (max-width: $bp-small) {
+      grid-column: main-start / main-end;
+      margin-left: 0;
+    }
+  }
+
+  //User Box
+  //Notification icon
+  &__icon {
+    @include flex-center;
+    margin: 0 2rem;
+    cursor: pointer;
+
+    position: relative;
+    @media screen and (max-width: $bp-small) {
+      display: none;
+    }
+    &--notify {
+      height: 3.5rem;
+      width: 3.5rem;
+    }
+
+    //-red- dot
+    &--dot {
+      &::after {
+        content: "";
+        height: 0.6rem;
+        width: 0.6rem;
+        background-color: red;
+        border-radius: 50%;
+        position: absolute;
+        top: 0.5rem;
+        right: 0.6rem;
+      }
+    }
+  }
+
+  &__user {
+    &-box {
+      grid-column: aside-start / aside-end;
+      @extend %header-padding;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      position: relative;
+    }
+    &--btn {
+      @media screen and (max-width: $bp-small) {
+        display: none;
+      }
+    }
+
+    &--photo {
+      @include flex-center;
+      padding-left: 2rem;
+      border-left: $line;
+      img {
+        height: 4.5rem;
+        width: 4.5rem;
+        border-radius: 50%;
+        cursor: pointer;
+      }
+
+      @media screen and (max-width: $bp-small) {
+        margin-right: 2rem;
+        border-left: none;
+        order: 1;
+      }
+      @media screen and (max-width: $bp-smallest) {
+        margin-right: 3rem;
+        padding-left: 0;
+      }
+
+      @media screen and (max-width: $bp-tiny) {
+        margin-right: 2rem;
+      }
+    }
+    &--name {
+      margin: 0 2rem 0 1.5rem;
+
+      @media screen and (max-width: $bp-small) {
+        // display: none;
+        margin: 0 1rem 0 0.5rem;
+      }
+      @media screen and (max-width: $bp-smallest) {
+        display: none;
+      }
+    }
+
+    //Show user menu
+    @media screen and (max-width: $bp-small) {
+      &--photo:hover ~ &-menu {
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+
+    //USer menu
+    &-menu {
+      display: none;
+      position: absolute;
+      top: 6.5rem;
+      right: 3.7rem;
+      background-color: $color-bodybackground;
+      padding: 1rem;
+      border-radius: 1rem;
+      border-top-right-radius: 0;
+      z-index: 999;
+      @media screen and (max-width: $bp-small) {
+        display: block;
+        visibility: hidden;
+        opacity: 0;
+        transition: all 0.4s;
+      }
+      @media screen and (max-width: $bp-smallest) {
+        right: 4.7rem;
+      }
+      &__list {
+        list-style: none;
+      }
+      &__item {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        &:not(:last-child) {
+          margin-bottom: 2rem;
+        }
+        svg {
+          height: 2.5rem;
+          width: 2.5rem;
+        }
+        span {
+        }
+      }
+    }
+  }
+}
+
+//Search field
+.search {
+  margin: auto;
+  @include flex-center;
+  width: 45rem;
+
+  @media screen and (max-width: $bp-medium) {
+    width: 34rem;
+  }
+
+  @media screen and (max-width: $bp-small) {
+    width: 40rem;
+  }
+
+  @media screen and (max-width: $bp-smallest) {
+    width: max-content;
+  }
+
+  &__btn {
+    height: 2.5rem;
+    width: 2.5rem;
+    border: none;
+    background-color: $color-white;
+    z-index: 1;
+    &--icon {
+      cursor: pointer;
+      color: $color-font-light;
+    }
+
+    &:focus {
+      outline: none;
+      border: none;
+    }
+  }
+
+  &__input {
+    width: 80%;
+    border: none;
+    background-color: $color-white;
+    font-family: inherit;
+    padding: 1.2rem 2rem 1.2rem 5rem;
+    color: $color-font-light;
+    border-radius: 10rem;
+    font-size: 1.8rem;
+    margin-left: -4rem;
+    transition: all 0.3s;
+    @media screen and (max-width: $bp-smallest) {
+      padding: 1rem 10rem 1rem 5rem;
+    }
+    @media screen and (max-width: $bp-tiny) {
+      padding: 1rem 1rem 1rem 5rem;
+    }
+
+    &:focus {
+      outline: none;
+      color: $color-font-dark;
+
+      width: 90%;
+    }
+  }
+}

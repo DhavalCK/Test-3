@@ -1,0 +1,149 @@
+.message {
+  padding: 5rem 0 0 0;
+  grid-column: aside-start / aside-end;
+  grid-row: 2 / 3;
+
+  @media screen and (max-width: $bp-large) {
+    padding-top: 4rem;
+  }
+
+  @media screen and (max-width: $bp-small) {
+    padding-top: 2.5rem;
+  }
+
+  @media screen and (max-width: $bp-smallest) {
+    grid-column: nav-start / aside-end;
+    grid-row: 5;
+    overflow-y: visible;
+    margin: 0 1rem 0 1rem;
+    background-color: $color-white;
+    border-top-left-radius: 5rem;
+    border-top-right-radius: 5rem;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+
+    padding: 0 4rem;
+    @media screen and (max-width: $bp-large) {
+      padding: 0 3rem;
+    }
+
+    @media screen and (max-width: $bp-medium) {
+      padding: 0 2rem;
+    }
+
+    @media screen and (max-width: $bp-smallest) {
+      padding: 0 4rem;
+    }
+  }
+
+  &__icons {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  &__icon,
+  &__icon--star {
+    cursor: pointer;
+
+    height: 2rem;
+    width: 2rem;
+    color: $color-black;
+  }
+
+  &__list {
+    list-style: none;
+    grid-row: 3 / span 2;
+    grid-column: aside-start / aside-end;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    &::-webkit-scrollbar {
+      width: 0.5rem;
+    }
+    &::-webkit-scrollbar-thumb {
+      border-radius: 10rem;
+      background-color: darken($color-bodybackground, 10%);
+    }
+    @media screen and (max-width: $bp-smallest) {
+      grid-row: 6;
+      grid-column: nav-start / aside-end;
+      overflow-y: visible;
+      margin: 0 1rem 3rem 1rem;
+      background-color: $color-white;
+      border-bottom-left-radius: 5rem;
+      border-bottom-right-radius: 5rem;
+    }
+  }
+
+  &__item {
+    display: grid;
+
+    grid-template-columns: min-content 1fr;
+    grid-template-rows: repeat(3, max-content);
+    column-gap: 2rem;
+    border: 2px solid transparent;
+
+    border-top: $line;
+
+    padding: 2rem 4rem;
+    transition: all 0.3s;
+
+    @media screen and (max-width: $bp-large) {
+      padding: 1rem 3rem;
+    }
+
+    @media screen and (max-width: $bp-medium) {
+      padding: 1rem 2rem;
+    }
+    @media screen and (max-width: $bp-smallest) {
+      padding: 1rem 4rem;
+    }
+    &:hover {
+      transform: scale(1.05) translateY(-3px);
+      border: 2px solid transparent;
+      z-index: 100;
+      background-color: $color-white;
+      box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.1);
+    }
+    &:hover + & {
+      border: 2px solid transparent;
+    }
+  }
+
+  &__user {
+    display: flex;
+    justify-content: space-between;
+
+    &-photo {
+      grid-row: 1 / -1;
+      @include flex-center;
+
+      img {
+        height: 5.5rem;
+        width: 5.5rem;
+        border-radius: 50%;
+      }
+    }
+
+    &-name {
+      font-size: 2rem;
+      font-weight: 600;
+    }
+  }
+  &__text {
+    font-size: 1.5rem;
+    letter-spacing: -0.3px;
+    font-weight: 500;
+  }
+  &__date {
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: $color-font-light;
+    justify-self: end;
+  }
+}

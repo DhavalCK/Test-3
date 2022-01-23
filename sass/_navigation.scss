@@ -1,0 +1,64 @@
+.navigation {
+  justify-self: center;
+  margin-top: 5rem;
+  grid-column: nav-start / nav-end;
+  grid-row: 2 / span 3;
+
+  @media screen and (max-width: $bp-large) {
+    margin-top: 4rem;
+  }
+
+  //Hide Navigation
+  @media screen and (max-width: $bp-small) {
+    grid-column: 1 / 1;
+    position: fixed;
+    height: 100vh;
+    z-index: 99;
+    padding: 10.5rem 2.5rem;
+    top: 0;
+    left: 0;
+    background-color: $color-bodybackground;
+    transform: translateX(-10rem);
+    margin-top: 0;
+    transition: all 0.3s;
+  }
+  &__list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  &__item {
+  }
+  &__link {
+    &:link,
+    &:visited {
+      @include flex-center;
+      color: $color-font-light;
+      height: 6rem;
+      width: 6rem;
+      border-radius: 50%;
+      //   background-color: $color-font-dark;
+      transition: all 0.2s;
+      @media screen and (max-width: $bp-medium) {
+        height: 5rem;
+        width: 5rem;
+      }
+    }
+    &--active:link,
+    &--active:visited,
+    &:hover,
+    &:active {
+      color: $color-white;
+      background-color: $color-font-dark;
+    }
+  }
+  &__icon {
+    height: 3rem;
+    width: 3rem;
+    @media screen and (max-width: $bp-medium) {
+      height: 2.5rem;
+      width: 2.5rem;
+    }
+  }
+}
